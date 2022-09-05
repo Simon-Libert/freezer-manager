@@ -25,7 +25,8 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-button (click)="add()">Add</ion-button>
+            <ion-button (click)="add()" [disabled]="!this.form.valid">Add</ion-button>
+            <!-- on met des crochets car on veut interpreter la valeur de valid qui est un booleen -->
           </ion-col>
         </ion-row>
       </ion-grid>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { FoodService } from '../services/food.service';
 
 @Component({
   selector: 'app-tab1',
@@ -9,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 export class Tab1Page implements OnInit {
   form: FormGroup; // création d'un membre form à l'extérieur pour pouvoir y accéder depuis plusieurs méthodes
 
-  constructor() { }
+  constructor(private foodService: FoodService) { } //injection de dépendance, on ajoute un accesseur, le non du service et son type
 
   ngOnInit() {
     this.form = new FormGroup({ //new instance de formGroup, on y passe un objet de config
@@ -24,7 +25,8 @@ export class Tab1Page implements OnInit {
 
   add() {
     console.log(this.form);
-
+    this.foodService.addFood(this.form.value)
+    this.form.reset();
   }
 
 }
